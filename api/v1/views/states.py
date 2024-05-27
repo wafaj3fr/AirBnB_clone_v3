@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-"""create state view"""
+"""
+create state view
+"""
 
 from flask import jsonify, abort, request
 from models import storage
@@ -8,14 +10,18 @@ from api.v1.views import app_views
 
 @app_views.route('/states', strict_slashes=False)
 def get_states():
-    """get all states"""
+    """
+    get all states
+    """
     states = storage.all(State).values()
     states = [state.to_dict() for state in states]
     return jsonify(states)
 
 @app_views.route('/states/<state_id>', strict_slashes=False)
 def get_state(state_id):
-    """get a state"""
+    """
+    get a state
+    """
     state = storage.get(State, state_id)
     if state is None:
         return abort(404)
@@ -23,7 +29,9 @@ def get_state(state_id):
 
 @app_views.route('/states/<state_id>', methods=['DELETE'], strict_slashes=False)
 def delete_state(state_id):
-    """delete a state"""
+    """
+    delete a state
+    """
     state = storage.get(State, state_id)
     if state is None:
         return abort(404)
@@ -33,7 +41,9 @@ def delete_state(state_id):
 
 @app_views.route('/states', methods=['POST'], strict_slashes=False)
 def create_state():
-    """create a state"""
+    """
+    create a state
+    """
     if request.content_type != 'application/json':
         return abort(404, "Not a JSON")
     data = request.get_json()
@@ -48,7 +58,9 @@ def create_state():
 
 @app_views.route('/states/<state_id>', methods=['PUT'], strict_slashes=False)
 def update_state(state_id):
-    """update a state"""
+    """
+    update a state
+    """
     state = storage.get(State, state_id)
     if state is None:
         return abort(404)
