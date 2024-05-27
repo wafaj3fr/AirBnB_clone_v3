@@ -19,7 +19,12 @@ def teardown_engine(exeption):
 @app.errorhandler(404)
 def not_found(error):
     """
+<<<<<<< HEAD
     Not found
+=======
+    not found
+    Arg: error
+>>>>>>> ae29bec954e0be12bf07f8fe9e5ec00abb0cb362
     """
     response = {"error": "Not found"}
     return jsonify(response), 404
