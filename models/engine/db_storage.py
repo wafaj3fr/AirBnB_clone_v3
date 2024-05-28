@@ -75,7 +75,7 @@ class DBStorage:
         """call remove() method on the private session attribute"""
         self.__session.remove()
 
-    def get(self, cls=None, id):
+    def get(self, cls=None, id=None):
         """retrieve an object by class and id"""
         if cls and id:
             if cls in classes.values() and isinstance(id, str):
